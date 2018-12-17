@@ -23,6 +23,7 @@ module.exports = {
                             require.resolve('@babel/preset-react'),
                             [require.resolve('@babel/preset-env'), {modules: false}],
                         ],
+                        plugins: ["@babel/plugin-syntax-dynamic-import"],
                         cacheDirectory: true,
                     },
                 },
