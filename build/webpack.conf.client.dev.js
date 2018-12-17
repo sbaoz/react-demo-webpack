@@ -30,6 +30,16 @@ module.exports = merge(base, {
         inline: true,
         stats: {
             color: true
+        },
+        proxy: {
+            '/api': {
+                target: 'http://xxx:9000',
+                pathRewrite: {
+                    '^/api': ''
+                },
+                secure: false,
+                changeOrigin: false
+            }
         }
     },
     plugins: [
