@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import './style.styl'
 
 export default class Home extends React.Component {
-
     render() {
         return (
             <div>Home</div>

@@ -47,6 +47,7 @@
     "react/jsx-one-expression-per-line": [0],
     "react/sort-comp": [0],
     "jsx-a11y/anchor-has-content": [0],
-    "linebreak-style": [0 ,"error", "windows"]
+    "linebreak-style": [0 ,"error", "windows"],
+    "react/prefer-stateless-function": [0]
   }
 }
