@@ -1,0 +1,12 @@
+lineClamp(line = 2)
+  overflow hidden
+  text-overflow: ellipsis
+  -webkit-line-clamp: line
+  -webkit-box-orient: vertical
+  display: -webkit-box
+  line-height: normal
+
+media(fontSize, diff = 0.2)
+  font-size: fontSize
+  @media screen and (min-width 600px)
+    font-size: fontSize + diff

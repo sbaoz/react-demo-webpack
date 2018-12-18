@@ -8,7 +8,7 @@ const config = require('./config')
 module.exports = merge(base, {
     mode: 'development',
     devtool: '#cheap-module-eval-source-map',
-    entry: ['./src/entry-client.js'],
+    entry: ['react-hot-loader/patch', './src/entry-client.js'],
     output: {
         filename: 'static/js/[name].js',
         path: utils.resolve('dist'),

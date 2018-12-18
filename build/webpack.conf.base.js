@@ -14,16 +14,16 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
+                loader: 'eslint-loader',
+                exclude: utils.resolve('node_modules'),
+                enforce: 'pre'
+            },
+            {
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: { // babel 转义的配置选项
-                        babelrc: false,
-                        presets: [
-                            require.resolve('@babel/preset-react'),
-                            [require.resolve('@babel/preset-env'), {modules: false}],
-                        ],
-                        plugins: ["@babel/plugin-syntax-dynamic-import"],
                         cacheDirectory: true,
                     },
                 },
@@ -54,23 +54,6 @@ module.exports = {
                     limit: 10 * 1024,
                     name: 'static/fonts/[name].[hash:8].[ext]'
                 }
-            },
-            {
-                test: /\.svg$/,
-                loader: 'svg-url-loader',
-                options: {
-                    // Inline files smaller than 10 kB (10240 bytes)
-                    limit: 10 * 1024,
-                    // Remove the quotes from the url
-                    // (they’re unnecessary in most cases)
-                    noquotes: true,
-                },
-            },
-            {
-                test: /\.(jpe?g|png|gif|svg)$/,
-                loader: 'image-webpack-loader',
-                // This will apply the loader before the other ones
-                enforce: 'pre',
             },
         ]
     }
