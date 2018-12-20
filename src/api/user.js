@@ -1,4 +1,4 @@
-import { hostConfig } from `./config`
+import { hostConfig } from './config'
 
 export default {
     getUserInfo(userName, password) {

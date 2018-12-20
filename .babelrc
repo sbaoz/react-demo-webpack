@@ -1,13 +1,56 @@
 {
-  "presets": [
-    "@babel/preset-react",
-    ["@babel/preset-env", {"modules": false}]
-  ],
-  "plugins": [
-    "@babel/plugin-transform-runtime",
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    "@loadable/babel-plugin",
-    "@babel/plugin-proposal-class-properties",
-    "react-hot-loader/babel"
-  ]
+    "presets": [
+        "@babel/preset-react",
+        [
+            "@babel/preset-env",
+            {
+                "modules": false
+            }
+        ]
+    ],
+    "plugins": [
+        "@babel/plugin-transform-runtime",
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ],
+        "@loadable/babel-plugin",
+        "@babel/plugin-proposal-class-properties",
+        "react-hot-loader/babel"
+    ],
+    "env": {
+        "development": {
+            "plugins": [
+                [
+                    "react-css-modules",
+                    {
+                        "generateScopedName": "[path]_[name]_[local]_[hash:base64:5]",
+                        "filetypes": {
+                            ".styl": {
+                                "syntax": "sugarss"
+                            }
+                        },
+                        "handleMissingStyleName": "warn"
+                    }
+                ]
+            ]
+        },
+        "production": {
+            "plugins": [
+                [
+                    "react-css-modules",
+                    {
+                        "generateScopedName": "[local]_[hash:base64:5]",
+                        "filetypes": {
+                            ".styl": {
+                                "syntax": "sugarss"
+                            }
+                        }
+                    }
+                ]
+            ]
+        }
+    }
 }

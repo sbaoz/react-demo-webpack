@@ -1,6 +1,8 @@
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const LoadablePlugin = require('@loadable/webpack-plugin')
 const base = require('./webpack.conf.base')
 const utils = require('./utils')
 const config = require('./config')
@@ -89,6 +91,24 @@ module.exports = merge(base, {
             }
         ]
     },
+    optimization: {
+        minimizer: [
+            new OptimizeCssAssetsPlugin({
+                cssProcessorOptions: {
+                    parser: require('postcss-safe-parser')
+                }
+            })
+        ]
+    },
+    plugins: [
+        new HtmlWebPackPlugin({
+            template: utils.resolve('public/index.template.html'),
+            filename: 'index.html',
+            inject: true
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new LoadablePlugin()
+    ],
     devServer: {
         contentBase: utils.resolve('public'),
         publicPath: config.dev.publicPath,
@@ -116,12 +136,4 @@ module.exports = merge(base, {
             }
         }
     },
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: utils.resolve('public/index.template.html'),
-            filename: 'index.html',
-            inject: true
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ],
 })
