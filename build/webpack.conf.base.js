@@ -6,7 +6,8 @@ module.exports = {
         alias: {
             '@': utils.resolve('src'),
             '@utils': utils.resolve('src/utils'),
-            '@components': utils.resolve('src/components')
+            '@components': utils.resolve('src/components'),
+            '@views': utils.resolve('src/views')
         },
         modules: [utils.resolve('node_modules')]
     },

@@ -1,26 +1,44 @@
 import React from 'react'
 // import { Redirect } from 'react-router-dom'
-import App from '../app'
+import Index from '@views/index'
+import Login from '@views/login'
 import routerComponents from './routerComponents'
 
-const routes = [{
-    component: App,
-    routes: [
-        {
-            path: '/',
-            component: routerComponents.Home,
-            exact: true
-        },
-        {
-            path: '/about',
-            component: routerComponents.About,
-            exact: true
-        },
-        {
-            path: '*',
-            component: routerComponents.NotMatch
-        }
-    ]
-}]
+export const routes = [
+    {
+        path: '/auth/login',
+        component: Login,
+        requiresAuth: false
+    },
+    {
+        path: '/',
+        component: Index,
+        routes: [
+            {
+                path: '/',
+                redirect: '/home',
+                component: routerComponents.Home,
+                requiresAuth: true
+            },
+            {
+                path: '/home',
+                component: routerComponents.Home,
+                exact: true,
+                requiresAuth: true
+            },
+            {
+                path: '/about',
+                component: routerComponents.About,
+                exact: true,
+                requiresAuth: true
+            },
+            {
+                path: '*',
+                component: routerComponents.NotMatch,
+                requiresAuth: false
+            }]
+    }
+]
+
 
 export default routes
